@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "pnpm install && pnpm build",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "functions": {
+    "dist/index.js": {
+      "runtime": "@vercel/node@5"
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js"
+    }
+  ]
+}
