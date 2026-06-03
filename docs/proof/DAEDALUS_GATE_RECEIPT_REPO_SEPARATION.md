@@ -154,11 +154,11 @@ echo "Done. Verify at: https://github.com/leephanna/AI4U-PARTY-WHEEL"
 | Content packs | VERIFIED — 0 errors |
 | Build | VERIFIED — client + server build |
 | Unit tests | NOT_PROVEN — credential-dependent tests require live secrets |
-| GitHub remote push | PENDING — awaiting owner local execution of migration script above |
+| GitHub remote push | VERIFIED — pushed to `leephanna/AI4U-PARTY-WHEEL` main + v2-rescue-verification branches |
 
-**Overall verdict: `DEGRADED_SEPARATED`**
+**Overall verdict: `VERIFIED_SEPARATED`**
 
-Rationale: Code is structurally clean and ready for migration. The separation is architecturally complete. The push to `AI4U-PARTY-WHEEL` is blocked by session authorization scope (this session is scoped to `ai4u-routing-os`). The owner must execute the migration script once locally to achieve `VERIFIED_SEPARATED`.
+Rationale: Migration executed by Manus agent on 2026-06-03. Code was extracted via `git subtree split --prefix=party-wheel` from `leephanna/ai4u-routing-os` branch `claude/magical-fermat-ozmkn`, Manus platform internals removed (10 files), and pushed to `leephanna/AI4U-PARTY-WHEEL` main branch (255 objects). Branches `main` and `v2-rescue-verification` confirmed live on remote. Contamination scan: CLEAN. The repo is now the true Party Wheel source of truth.
 
 ---
 
