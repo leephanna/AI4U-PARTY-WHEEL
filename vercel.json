@@ -4,14 +4,14 @@
   "installCommand": "pnpm install",
   "framework": null,
   "functions": {
-    "dist/index.js": {
-      "runtime": "@vercel/node@5"
+    "api/index.ts": {
+      "runtime": "@vercel/node@5.0.0"
     }
   },
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "dist/index.js"
+      "dest": "/api/index.ts"
     }
   ]
 }
