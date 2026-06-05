@@ -178,7 +178,7 @@ const roomRouter = router({
       // Part 4: write guestSessionId as HTTP cookie so server-side identity lookup works
       if (input.guestSessionId && !ctx.user) {
         const cookieOptions = getSessionCookieOptions(ctx.req);
-        ctx.res.cookie("ai4u_guest_session_id", input.guestSessionId, {
+        (ctx.res as any).cookie("ai4u_guest_session_id", input.guestSessionId, {
           ...cookieOptions,
           maxAge: 4 * 60 * 60 * 1000, // 4 hours
           httpOnly: false, // must be readable by client localStorage sync
@@ -1170,7 +1170,7 @@ export const appRouter = router({
     me: publicProcedure.query(opts => opts.ctx.user),
     logout: publicProcedure.mutation(({ ctx }) => {
       const cookieOptions = getSessionCookieOptions(ctx.req);
-      ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
+      (ctx.res as any).clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
     }),
   }),
