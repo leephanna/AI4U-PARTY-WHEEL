@@ -1,16 +1,16 @@
 import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
-import type { Express, Request, Response } from "express";
 import * as db from "../db";
 import { getSessionCookieOptions } from "./cookies";
 import { sdk } from "./sdk";
 
-function getQueryParam(req: Request, key: string): string | undefined {
-  const value = (req as any).query[key];
+function getQueryParam(req: any, key: string): string | undefined {
+  const value = req.query?.[key];
   return typeof value === "string" ? value : undefined;
 }
 
-export function registerOAuthRoutes(app: Express) {
-  app.get("/api/oauth/callback", async (req: Request, res: Response) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function registerOAuthRoutes(app: any) {
+  app.get("/api/oauth/callback", async (req: any, res: any) => {
     const code = getQueryParam(req, "code");
     const state = getQueryParam(req, "state");
 
@@ -43,7 +43,6 @@ export function registerOAuthRoutes(app: Express) {
 
       const cookieOptions = getSessionCookieOptions(req);
       res.cookie(COOKIE_NAME, sessionToken, { ...cookieOptions, maxAge: ONE_YEAR_MS });
-
       res.redirect(302, "/");
     } catch (error) {
       console.error("[OAuth] Callback failed", error);
