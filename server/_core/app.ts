@@ -20,7 +20,7 @@ app.use("/api/trpc", createExpressMiddleware({ router: appRouter, createContext 
 const distPath = path.resolve(import.meta.dirname, "public");
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
-  app.use("*", (_req, res) => {
+  app.get("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
